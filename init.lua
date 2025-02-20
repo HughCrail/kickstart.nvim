@@ -190,6 +190,8 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 vim.keymap.set('n', '<leader>fs', '<cmd>w<cr><esc>', { desc = 'Save the current buffer' })
+vim.keymap.set('n', '<leader>bn', vim.cmd.bn, { desc = 'Next Buffer' })
+vim.keymap.set('n', '<leader>bp', vim.cmd.bp, { desc = 'Previous Buffer' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -351,6 +353,25 @@ require('lazy').setup({
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      {
+        'ahmedkhalf/project.nvim',
+        opts = {
+          detection_methods = { 'lsp' },
+
+          -- All the patterns used to detect root dir, when **"pattern"** is in
+          -- detection_methods
+          patterns = { '.git' },
+
+          -- Don't calculate root dir on specific directories
+          -- Ex: { "~/.cargo/*", ... }
+          exclude_dirs = {},
+        },
+        event = 'VeryLazy',
+        config = function(_, opts)
+          require('project_nvim').setup(opts)
+        end,
+      },
+      'nvim-telescope/telescope-file-browser.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
         'nvim-telescope/telescope-fzf-native.nvim',
 
@@ -415,6 +436,12 @@ require('lazy').setup({
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'file_browser')
+      pcall(require('telescope').load_extension, 'projects')
+
+      vim.keymap.set('n', '<leader>o-', function()
+        require('telescope').extensions.file_browser.file_browser()
+      end)
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -427,7 +454,11 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>pp', function()
+        require('telescope').extensions.projects.projects()
+      end, { desc = 'Find recent projects' })
+      vim.keymap.set('n', '<leader>pf', builtin.git_files, { desc = 'Find Git Files' })
+      vim.keymap.set('n', '<leader>bb', builtin.buffers, { desc = 'Find open buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>ss', function()
@@ -550,7 +581,7 @@ require('lazy').setup({
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          map('<leader>cws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
@@ -991,15 +1022,15 @@ require('lazy').setup({
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
@@ -1026,6 +1057,15 @@ require('lazy').setup({
     },
   },
 })
+
+if vim.g.neovide then
+  vim.g.neovide_fullscreen = true
+  vim.g.neovide_cursor_animation_length = 0
+  vim.g.neovide_scroll_animation_length = 0.1
+  vim.keymap.set('n', '<leader>tf', function()
+    vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
+  end, { desc = 'Toggle Fullscreen' })
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
