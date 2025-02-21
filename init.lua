@@ -94,6 +94,12 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+--  Use <leader>w+<hjkl> to switch between windows
+vim.keymap.set('n', '<leader>wj', '<C-w>j', { desc = 'Move to window below' })
+vim.keymap.set('n', '<leader>wk', '<C-w>k', { desc = 'Move to window above' })
+vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Move to window on the left' })
+vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Move to window on the right' })
+
 local todo = function()
   vim.cmd 'echo "unimplemented"'
 end
@@ -138,5 +144,4 @@ if vim.g.neovide then
   end, { desc = 'Toggle Fullscreen' })
 end
 
--- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
