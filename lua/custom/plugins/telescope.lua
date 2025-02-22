@@ -72,12 +72,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
       require('telescope').extensions.file_browser.file_browser {
         cwd = vim.fn.expand '%:p:h',
       }
-    end)
+    end, { desc = 'Open file browser' })
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
     vim.keymap.set('n', '<leader>hs', builtin.help_tags, { desc = 'Search Help' })
-    vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Search Keymaps' })
+    vim.keymap.set('n', '<leader>hk', builtin.keymaps, { desc = 'Search Keymaps' })
     vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Search Files' })
     vim.keymap.set('n', '<leader>st', builtin.builtin, { desc = 'Search Select Telescope' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = 'Search current Word' })

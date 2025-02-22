@@ -4,7 +4,19 @@
 -- See the kickstart.nvim README for more information
 return {
   'tpope/vim-sleuth',
-  'github/copilot.vim',
+  {
+    'github/copilot.vim',
+    config = function()
+      vim.keymap.set('i', '<m-l>', 'copilot#AcceptWord("")', {
+        expr = true,
+        desc = 'Accept Copilot Word',
+      })
+      vim.keymap.set('i', '<c-m-l>', 'copilot#AcceptLine("")', {
+        expr = true,
+        desc = 'Accept Copilot Line',
+      })
+    end,
+  },
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
