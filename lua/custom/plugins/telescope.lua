@@ -76,22 +76,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
-    vim.keymap.set('n', '<leader>hs', builtin.help_tags, { desc = 'Search Help' })
-    vim.keymap.set('n', '<leader>hk', builtin.keymaps, { desc = 'Search Keymaps' })
-    vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Search Files' })
-    vim.keymap.set('n', '<leader>st', builtin.builtin, { desc = 'Search Select Telescope' })
-    vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = 'Search Diagnostics' })
-    vim.keymap.set('n', "<leader>'", builtin.resume, { desc = 'Search Resume' })
-    vim.keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = 'Search Recent Files' })
     vim.keymap.set('n', '<leader>pp', function()
       require('telescope').extensions.projects.projects()
     end, { desc = 'Find recent projects' })
-    vim.keymap.set('n', '<leader>pf', builtin.git_files, { desc = 'Find Git Files' })
-    vim.keymap.set('n', '<leader>bb', builtin.buffers, { desc = 'Find open buffers' })
-
-    vim.keymap.set('n', '<leader>/', builtin.live_grep, { desc = 'Search by Grep' })
-    vim.keymap.set('n', '<leader>*', builtin.grep_string, { desc = 'Search current Word' })
-
     -- Shortcut for searching your Neovim configuration files
     vim.keymap.set('n', '<leader>sn', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
