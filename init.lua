@@ -1,5 +1,6 @@
 -- Set <space> as the leader key
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -107,14 +108,13 @@ end
 vim.keymap.set('n', '<leader>fs', '<cmd>w<cr><esc>', { desc = 'Save the current buffer' })
 vim.keymap.set('n', '<leader>bn', vim.cmd.bn, { desc = 'Next Buffer' })
 vim.keymap.set('n', '<leader>bp', vim.cmd.bp, { desc = 'Previous Buffer' })
-vim.keymap.set('n', '<leader>qq', vim.cmd.q, { desc = 'Quit ' })
+vim.keymap.set('n', '<leader>qq', vim.cmd.qa, { desc = 'Quit ' })
 vim.keymap.set('n', '<leader>wv', vim.cmd.vsp, { desc = 'Veritcal Split ' })
 vim.keymap.set('n', '<leader>ws', vim.cmd.sp, { desc = 'Horizontal Split ' })
 vim.keymap.set('n', '<leader>wd', vim.cmd.clo, { desc = 'Close Window ' })
 vim.keymap.set('n', '<leader>ff', '<cmd>e %:p:h<tab>', { desc = 'Find File' })
 vim.keymap.set('n', '<leader>wm', vim.cmd.only, { desc = 'Close all other windows' })
 vim.keymap.set('n', '<leader>wu', todo, { desc = 'Undo Window ' })
-vim.keymap.set('n', '<leader>gs', '<cmd>Neogit<cr>', { desc = 'Git Status' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -130,11 +130,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
-
-require 'config.lazy'
-
 if vim.g.neovide then
   vim.g.neovide_fullscreen = true
   vim.g.neovide_cursor_animation_length = 0
@@ -143,5 +138,10 @@ if vim.g.neovide then
     vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
   end, { desc = 'Toggle Fullscreen' })
 end
+
+-- [[ Install `lazy.nvim` plugin manager ]]
+--    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+
+require 'config.lazy'
 
 -- vim: ts=2 sts=2 sw=2 et
