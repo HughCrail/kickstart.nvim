@@ -26,7 +26,7 @@ return {
       function()
         require('browse.devdocs').search_with_filetype(require('browse.utils').get_visual_text())
       end,
-      mode = { 'n', 'v' },
+      mode = 'v',
       desc = 'Search Docs Online',
     },
     {
@@ -34,7 +34,7 @@ return {
       function()
         require('browse.mdn').search(require('browse.utils').get_visual_text())
       end,
-      mode = { 'n', 'v' },
+      mode = 'v',
       desc = 'Search MDN Online',
     },
     {
@@ -42,7 +42,7 @@ return {
       function()
         require('browse').open_bookmarks()
       end,
-      mode = { 'n', 'v' },
+      mode = 'v',
       desc = 'Search Bookmarks Online',
     },
     {
@@ -50,12 +50,12 @@ return {
       function()
         require('browse').input_search()
       end,
-      mode = { 'n', 'v' },
+      mode = 'v',
       desc = 'Search Google Online',
     },
     -- like above but use the word under the cursor
     {
-      '<leader>sOB',
+      '<leader>sob',
       function()
         require('browse').open_bookmarks {
           visual_text = vim.fn.expand '<cword>',
@@ -64,14 +64,14 @@ return {
       desc = 'Search Bookmarks Online',
     },
     {
-      '<leader>sOD',
+      '<leader>sod',
       function()
         require('browse.devdocs').search_with_filetype(vim.fn.expand '<cword>')
       end,
       desc = 'Search Docs Online',
     },
     {
-      '<leader>sOM',
+      '<leader>som',
       function()
         require('browse.mdn').search(vim.fn.expand '<cword>')
       end,
@@ -79,7 +79,7 @@ return {
     },
     {
 
-      '<leader>sOO',
+      '<leader>soo',
       function()
         require('browse.input').search_input(vim.fn.expand '<cword>')
       end,
