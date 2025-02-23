@@ -52,10 +52,8 @@ return { -- Autocompletion
       -- For an understanding of why these mappings were
       -- chosen, you will need to read `:help ins-completion`
       mapping = cmp.mapping.preset.insert {
-        -- Select the [n]ext item
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        -- Select the [p]revious item
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
 
         -- Scroll the documentation window [b]ack / [f]orward
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),

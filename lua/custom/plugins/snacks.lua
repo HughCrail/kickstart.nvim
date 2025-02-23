@@ -1,8 +1,11 @@
+---@module "snacks"
+
+local picker = require 'snacks.picker'
 return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
-  ---@type Snacks.Config
+  ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
     terminal = { enabled = true },
@@ -15,21 +18,21 @@ return {
     {
       '<leader>pp',
       function()
-        Snacks.picker.projects()
+        picker.projects()
       end,
       desc = 'Search Projects',
     },
     {
       '<leader>o-',
       function()
-        Snacks.picker.explorer()
+        picker.explorer()
       end,
       desc = 'Open file browser',
     },
     {
       '<leader>gB',
       function()
-        Snacks.picker.git_log_line()
+        picker.git_log_line()
       end,
       desc = 'Git Blame Line',
     },
@@ -43,91 +46,92 @@ return {
     {
       '<leader>st',
       function()
-        Snacks.picker.todo_comments()
+        ---@diagnostic disable-next-line: undefined-field
+        picker.todo_comments()
       end,
       desc = 'Search TODOs',
     },
     {
       '<leader>sp',
       function()
-        Snacks.picker.pickers()
+        picker.pickers()
       end,
       desc = 'Search Picker Sources',
     },
     {
       '<leader>fr',
       function()
-        Snacks.picker.recent()
+        picker.recent()
       end,
       desc = 'Search Recent Files',
     },
     {
       '<leader>sq',
       function()
-        Snacks.picker.qflist()
+        picker.qflist()
       end,
       desc = 'Quickfix List',
     },
     {
       '<leader>sd',
       function()
-        Snacks.picker.diagnostics()
+        picker.diagnostics()
       end,
       desc = 'Diagnostics',
     },
     {
       '<leader>sD',
       function()
-        Snacks.picker.diagnostics_buffer()
+        picker.diagnostics_buffer()
       end,
       desc = 'Buffer Diagnostics',
     },
     {
       "<leader>'",
       function()
-        Snacks.picker.resume()
+        picker.resume()
       end,
       desc = 'Resume',
     },
     {
       '<leader>hk',
       function()
-        Snacks.picker.keymaps()
+        picker.keymaps()
       end,
       desc = 'Keymaps',
     },
     {
       '<leader>sl',
       function()
-        Snacks.picker.loclist()
+        picker.loclist()
       end,
       desc = 'Location List',
     },
     {
       '<leader>sM',
       function()
-        Snacks.picker.man()
+        picker.man()
       end,
       desc = 'Man Pages',
     },
     {
       '<leader>sm',
       function()
-        Snacks.picker.marks()
+        picker.marks()
       end,
       desc = 'Marks',
     },
     {
       '<leader>hs',
       function()
-        Snacks.picker.help()
+        picker.help()
       end,
       desc = 'Help Pages',
     },
     {
       '<leader>/',
       function()
-        Snacks.picker.git_grep {
+        picker.git_grep {
           untracked = true,
           submodules = true,
         }
@@ -137,84 +141,84 @@ return {
     {
       '<leader><space>',
       function()
-        Snacks.picker.smart()
+        picker.smart()
       end,
       desc = 'Smart Find Files',
     },
     {
       '<c-/>',
       function()
-        Snacks.terminal()
+        require 'snacks.terminal'()
       end,
       desc = 'Toggle Terminal',
     },
     {
       '<leader>vp',
       function()
-        Snacks.picker.lazy()
+        picker.lazy()
       end,
       desc = 'Search plugin specs',
     },
     {
       '<leader>ii',
       function()
-        Snacks.picker.icons()
+        picker.icons()
       end,
       desc = 'Insert Icons',
     },
     {
       '<leader>ss',
       function()
-        Snacks.picker.lines()
+        picker.lines()
       end,
       desc = 'Search buffer lines',
     },
     {
       '<leader>su',
       function()
-        Snacks.picker.undo()
+        picker.undo()
       end,
       desc = 'Undotree',
     },
     {
       '<leader>s/',
       function()
-        Snacks.picker.grep_buffers()
+        picker.grep_buffers()
       end,
       desc = 'Grep Open Buffers',
     },
     {
       '<leader>:',
       function()
-        Snacks.picker.command_history()
+        picker.command_history()
       end,
       desc = 'Command History',
     },
     {
       '<leader>n',
       function()
-        Snacks.picker.notifications()
+        picker.notifications()
       end,
       desc = 'Notification History',
     },
     {
       '<leader>bb',
       function()
-        Snacks.picker.buffers()
+        picker.buffers()
       end,
       desc = 'Buffers',
     },
     {
       '<leader>bB',
       function()
-        Snacks.picker.buffers { hidden = true, nofile = true }
+        picker.buffers { hidden = true, nofile = true }
       end,
       desc = 'Buffers (all)',
     },
     {
       '<leader>pf',
       function()
-        Snacks.picker.git_files()
+        picker.git_files()
       end,
       desc = 'Find Files (git-files)',
     },
