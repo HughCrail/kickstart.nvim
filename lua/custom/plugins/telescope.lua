@@ -1,27 +1,10 @@
 return { -- Fuzzy Finder (files, lsp, etc)
   'vim-telescope/telescope.nvim',
   event = 'VimEnter',
+  enabled = true,
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    {
-      'ahmedkhalf/project.nvim',
-      opts = {
-        detection_methods = { 'lsp', 'pattern' },
-        -- All the patterns used to detect root dir, when **"pattern"** is in
-        -- detection_methods
-        patterns = { '.git' },
-
-        -- Don't calculate root dir on specific directories
-        -- Ex: { "~/.cargo/*", ... }
-        exclude_dirs = {},
-      },
-      event = 'VeryLazy',
-      config = function(_, opts)
-        require('project_nvim').setup(opts)
-      end,
-    },
-    'nvim-telescope/telescope-file-browser.nvim',
     { -- If encountering errors, see telescope-fzf-native README for installation instructions
       'nvim-telescope/telescope-fzf-native.nvim',
 
@@ -64,21 +47,10 @@ return { -- Fuzzy Finder (files, lsp, etc)
     -- Enable Telescope extensions if they are installed
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
-    pcall(require('telescope').load_extension, 'file_browser')
-    pcall(require('telescope').load_extension, 'projects')
-
-    vim.keymap.set('n', '<leader>o-', function()
-      -- Open the file browser in the directory of the current file
-      require('telescope').extensions.file_browser.file_browser {
-        cwd = vim.fn.expand '%:p:h',
-      }
-    end, { desc = 'Open file browser' })
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
-    vim.keymap.set('n', '<leader>pp', function()
-      require('telescope').extensions.projects.projects()
-    end, { desc = 'Find recent projects' })
+
     -- Shortcut for searching your Neovim configuration files
     vim.keymap.set('n', '<leader>sn', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }

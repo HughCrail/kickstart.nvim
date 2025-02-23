@@ -13,6 +13,20 @@ return {
   },
   keys = {
     {
+      '<leader>pp',
+      function()
+        Snacks.picker.projects()
+      end,
+      desc = 'Search Projects',
+    },
+    {
+      '<leader>o-',
+      function()
+        Snacks.picker.explorer()
+      end,
+      desc = 'Open file browser',
+    },
+    {
       '<leader>gB',
       function()
         Snacks.picker.git_log_line()

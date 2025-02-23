@@ -44,8 +44,17 @@ return {
   },
 
   {
+    'EdenEast/nightfox.nvim',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'carbonfox'
+    end,
+  },
+
+  {
     'folke/tokyonight.nvim',
     priority = 1000,
+    enabled = false,
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
