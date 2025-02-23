@@ -1,6 +1,5 @@
 ---@module "snacks"
 
-local picker = require 'snacks.picker'
 return {
   'folke/snacks.nvim',
   priority = 1000,
@@ -18,21 +17,21 @@ return {
     {
       '<leader>pp',
       function()
-        picker.projects()
+        Snacks.picker.projects()
       end,
       desc = 'Search Projects',
     },
     {
       '<leader>o-',
       function()
-        picker.explorer()
+        Snacks.picker.explorer()
       end,
       desc = 'Open file browser',
     },
     {
       '<leader>gB',
       function()
-        picker.git_log_line()
+        Snacks.picker.git_log_line()
       end,
       desc = 'Git Blame Line',
     },
@@ -47,91 +46,91 @@ return {
       '<leader>st',
       function()
         ---@diagnostic disable-next-line: undefined-field
-        picker.todo_comments()
+        Snacks.picker.todo_comments()
       end,
       desc = 'Search TODOs',
     },
     {
       '<leader>sp',
       function()
-        picker.pickers()
+        Snacks.picker.pickers()
       end,
       desc = 'Search Picker Sources',
     },
     {
       '<leader>fr',
       function()
-        picker.recent()
+        Snacks.picker.recent()
       end,
       desc = 'Search Recent Files',
     },
     {
       '<leader>sq',
       function()
-        picker.qflist()
+        Snacks.picker.qflist()
       end,
       desc = 'Quickfix List',
     },
     {
       '<leader>sd',
       function()
-        picker.diagnostics()
+        Snacks.picker.files()
       end,
-      desc = 'Diagnostics',
+      desc = 'Search Directory',
     },
     {
       '<leader>sD',
       function()
-        picker.diagnostics_buffer()
+        Snacks.picker.files()
       end,
-      desc = 'Buffer Diagnostics',
+      desc = 'Search Directory',
     },
     {
       "<leader>'",
       function()
-        picker.resume()
+        Snacks.picker.resume()
       end,
       desc = 'Resume',
     },
     {
       '<leader>hk',
       function()
-        picker.keymaps()
+        Snacks.picker.keymaps()
       end,
       desc = 'Keymaps',
     },
     {
       '<leader>sl',
       function()
-        picker.loclist()
+        Snacks.picker.loclist()
       end,
       desc = 'Location List',
     },
     {
       '<leader>sM',
       function()
-        picker.man()
+        Snacks.picker.man()
       end,
       desc = 'Man Pages',
     },
     {
       '<leader>sm',
       function()
-        picker.marks()
+        Snacks.picker.marks()
       end,
       desc = 'Marks',
     },
     {
       '<leader>hs',
       function()
-        picker.help()
+        Snacks.picker.help()
       end,
       desc = 'Help Pages',
     },
     {
       '<leader>/',
       function()
-        picker.git_grep {
+        Snacks.picker.git_grep {
           untracked = true,
           submodules = true,
         }
@@ -141,84 +140,84 @@ return {
     {
       '<leader><space>',
       function()
-        picker.smart()
+        Snacks.picker.smart()
       end,
       desc = 'Smart Find Files',
     },
     {
       '<c-/>',
       function()
-        require 'snacks.terminal'()
+        Snacks.terminal()
       end,
       desc = 'Toggle Terminal',
     },
     {
       '<leader>vp',
       function()
-        picker.lazy()
+        Snacks.picker.lazy()
       end,
       desc = 'Search plugin specs',
     },
     {
       '<leader>ii',
       function()
-        picker.icons()
+        Snacks.picker.icons()
       end,
       desc = 'Insert Icons',
     },
     {
       '<leader>ss',
       function()
-        picker.lines()
+        Snacks.picker.lines()
       end,
       desc = 'Search buffer lines',
     },
     {
       '<leader>su',
       function()
-        picker.undo()
+        Snacks.picker.undo()
       end,
       desc = 'Undotree',
     },
     {
       '<leader>s/',
       function()
-        picker.grep_buffers()
+        Snacks.picker.grep_buffers()
       end,
       desc = 'Grep Open Buffers',
     },
     {
       '<leader>:',
       function()
-        picker.command_history()
+        Snacks.picker.command_history()
       end,
       desc = 'Command History',
     },
     {
       '<leader>n',
       function()
-        picker.notifications()
+        Snacks.picker.notifications()
       end,
       desc = 'Notification History',
     },
     {
       '<leader>bb',
       function()
-        picker.buffers()
+        Snacks.picker.buffers()
       end,
       desc = 'Buffers',
     },
     {
       '<leader>bB',
       function()
-        picker.buffers { hidden = true, nofile = true }
+        Snacks.picker.buffers { hidden = true, nofile = true }
       end,
       desc = 'Buffers (all)',
     },
     {
       '<leader>pf',
       function()
-        picker.git_files()
+        Snacks.picker.git_files()
       end,
       desc = 'Find Files (git-files)',
     },
