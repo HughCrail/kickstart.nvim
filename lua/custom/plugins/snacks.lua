@@ -14,6 +14,21 @@ return {
     },
   },
   keys = {
+    -- Find files in config
+    {
+      '<leader>vf',
+      function()
+        Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
+      end,
+      desc = 'Search Neovim files',
+    },
+    {
+      '<leader>vpc',
+      function()
+        Snacks.picker.grep { dirs = { vim.fn.stdpath 'data' .. '/lazy' } }
+      end,
+      desc = 'Search Lazy Plugins',
+    },
     {
       '<leader>pp',
       function()
@@ -152,7 +167,7 @@ return {
       desc = 'Toggle Terminal',
     },
     {
-      '<leader>vp',
+      '<leader>vps',
       function()
         Snacks.picker.lazy()
       end,
