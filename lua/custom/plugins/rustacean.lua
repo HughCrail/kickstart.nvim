@@ -3,7 +3,6 @@ return {
   {
     'mrcjkb/rustaceanvim',
     version = '^5', -- Recommended
-    enabled = false,
     lazy = false, -- This plugin is already lazy
     init = function()
       ---@type rustaceanvim.Opts
@@ -14,6 +13,44 @@ return {
               vim.cmd.RustLsp 'explainError'
             end, { silent = true, buffer = bufnr })
           end,
+        },
+        default_settings = {
+          ['rust-analyzer'] = {
+            cargo = {
+              allFeatures = true,
+              loadOutDirsFromCheck = true,
+              buildScripts = {
+                enable = true,
+              },
+            },
+            -- Disabled because we are using bacon-ls
+            checkOnSave = false,
+            -- Disabled because we are using bacon-ls
+            diagnostics = {
+              enable = false,
+            },
+            procMacro = {
+              enable = true,
+              ignored = {
+                ['async-trait'] = { 'async_trait' },
+                ['napi-derive'] = { 'napi' },
+                ['async-recursion'] = { 'async_recursion' },
+              },
+            },
+            files = {
+              excludeDirs = {
+                '.direnv',
+                '.git',
+                '.github',
+                '.gitlab',
+                'bin',
+                'node_modules',
+                'target',
+                'venv',
+                '.venv',
+              },
+            },
+          },
         },
       }
     end,
