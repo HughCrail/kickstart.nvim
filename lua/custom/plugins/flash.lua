@@ -48,7 +48,19 @@ return {
       mode = { 'n' },
       function()
         require('flash').jump {
-          search = { mode = 'search', max_length = 0 },
+          search = { mode = 'search', forward = true, wrap = false, mulit_window = false, max_length = 0 },
+          label = { after = { 0, 0 } },
+          pattern = '^',
+        }
+      end,
+      desc = 'Jump to Line',
+    },
+    {
+      'gk',
+      mode = { 'n' },
+      function()
+        require('flash').jump {
+          search = { mode = 'search', forward = false, wrap = false, mulit_window = false, max_length = 0 },
           label = { after = { 0, 0 } },
           pattern = '^',
         }

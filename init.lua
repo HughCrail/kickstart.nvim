@@ -5,7 +5,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -93,10 +93,10 @@ vim.keymap.set('t', '<C-/>', '<cmd>close<cr>', { desc = 'Hide Terminal' })
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set({ 'n' }, '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set({ 'n' }, '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set({ 'n' }, '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set({ 'n' }, '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 --  Use <leader>w+<hjkl> to switch between windows
 vim.keymap.set('n', '<leader>wj', '<C-w>j', { desc = 'Move to window below' })
@@ -133,13 +133,34 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+if vim.fn.has 'win32' then
+  vim.opt.shell = 'powershell.exe'
+end
+
 if vim.g.neovide then
   vim.g.neovide_fullscreen = true
   vim.g.neovide_cursor_animation_length = 0
-  vim.g.neovide_scroll_animation_length = 0.1
+  vim.g.neovide_scroll_animation_length = 0
+  vim.g.neovide_position_animation_length = 0
+  if vim.fn.has 'win32' then
+    vim.fn.chdir 'C:/dev/repos'
+    local font = 'FiraCode Nerd Font'
+    local defaut_size = 15
+    vim.o.guifont = font .. ':h' .. defaut_size
+    -- Bindings to dynamically increase and decrease font size
+  end
   vim.keymap.set('n', '<leader>tf', function()
     vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
   end, { desc = 'Toggle Fullscreen' })
+  vim.keymap.set({ 'n', 'v' }, '<C-+>', function()
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1
+  end, { desc = 'Increase Font Size' })
+  vim.keymap.set({ 'n', 'v' }, '<C-->', function()
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1
+  end, { desc = 'Decrease Font Size' })
+  vim.keymap.set({ 'n', 'v' }, '<C-=>', function()
+    vim.g.neovide_scale_factor = 1
+  end, { desc = 'Reset Font Size' })
 end
 
 -- [[ Install `lazy.nvim` plugin manager ]]

@@ -4,15 +4,21 @@ return {
     'github/copilot.vim',
     init = function()
       vim.g.copilot_enabled = true
+      -- if windows then set copilot_workspace_folders to repo dir
+      if vim.fn.has 'win32' then
+        vim.g.copilot_workspace_folders = { 'C:/dev/repos' }
+      end
     end,
     config = function()
       vim.keymap.set('i', '<m-l>', 'copilot#AcceptWord("")', {
         expr = true,
         desc = 'Accept Copilot Word',
+        silent = true,
       })
-      vim.keymap.set('i', '<c-m-l>', 'copilot#AcceptLine("")', {
+      vim.keymap.set('i', '<m-j>', 'copilot#AcceptLine("")', {
         expr = true,
         desc = 'Accept Copilot Line',
+        silent = true,
       })
       -- Toggle Copilot
       vim.keymap.set('n', '<leader>tc', function()
@@ -86,11 +92,15 @@ return {
       'nvim-lua/plenary.nvim',
       'sindrets/diffview.nvim',
       'nvim-telescope/telescope.nvim',
+      'folke/snacks.nvim',
     },
     keys = {
       {
         '<leader>gg',
-        '<cmd>Neogit<cr>',
+        function()
+          local git = require 'snacks.git'
+          require('neogit').open { cwd = git.get_root() }
+        end,
         desc = 'Open Neogit',
       },
     },

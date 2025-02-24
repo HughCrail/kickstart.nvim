@@ -4,6 +4,7 @@ return {
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    event = { 'VeryLazy' },
     keys = {
       { '<c-space>', desc = 'Increment Selection' },
       { '<bs>', desc = 'Decrement Selection', mode = 'x' },
@@ -14,12 +15,15 @@ return {
         'c',
         'diff',
         'html',
+        'javascript',
         'lua',
         'luadoc',
         'markdown',
         'markdown_inline',
         'query',
         'regex',
+        'rust',
+        'typescript',
         'vim',
         'vimdoc',
       },
@@ -40,6 +44,15 @@ return {
           node_incremental = '<C-space>',
           scope_incremental = false,
           node_decremental = '<bs>',
+        },
+      },
+      textobjects = {
+        move = {
+          enable = true,
+          goto_next_start = { [']f'] = '@function.outer', [']c'] = '@class.outer', [']a'] = '@parameter.inner' },
+          goto_next_end = { [']F'] = '@function.outer', [']C'] = '@class.outer', [']A'] = '@parameter.inner' },
+          goto_previous_start = { ['[f'] = '@function.outer', ['[c'] = '@class.outer', ['[a'] = '@parameter.inner' },
+          goto_previous_end = { ['[F'] = '@function.outer', ['[C'] = '@class.outer', ['[A'] = '@parameter.inner' },
         },
       },
     },

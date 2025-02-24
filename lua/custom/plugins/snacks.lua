@@ -232,9 +232,28 @@ return {
     {
       '<leader>pf',
       function()
-        Snacks.picker.git_files()
+        Snacks.picker.git_files {
+          untracked = true,
+          submodules = true,
+        }
       end,
       desc = 'Find Files (git-files)',
+    },
+    keys = {
+      {
+        '<leader>.',
+        function()
+          Snacks.scratch()
+        end,
+        desc = 'Toggle Scratch Buffer',
+      },
+      {
+        '<leader>S',
+        function()
+          Snacks.scratch.select()
+        end,
+        desc = 'Select Scratch Buffer',
+      },
     },
   },
 }
