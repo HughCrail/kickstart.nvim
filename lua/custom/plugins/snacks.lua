@@ -37,13 +37,6 @@ return {
         desc = 'Search Projects',
       },
       {
-        '<leader>o-',
-        function()
-          Snacks.picker.explorer()
-        end,
-        desc = 'Open file browser',
-      },
-      {
         '<leader>gB',
         function()
           Snacks.picker.git_log_line()
@@ -86,15 +79,6 @@ return {
           Snacks.picker.qflist()
         end,
         desc = 'Quickfix List',
-      },
-      {
-        '<leader>sd',
-        function()
-          Snacks.picker.files {
-            cwd = vim.fn.expand '%:p:h',
-          }
-        end,
-        desc = 'Search Directory',
       },
       {
         "<leader>'",
@@ -157,6 +141,25 @@ return {
         end,
         mode = { 'n', 'v' },
         desc = 'Grep (Root Dir)',
+      },
+      {
+        '<leader>sd',
+        function()
+          Snacks.picker.grep {
+            dirs = { vim.fn.expand '%:p:h' },
+          }
+        end,
+        desc = 'Search Directory',
+      },
+      {
+        '<leader>sD',
+        function()
+          Snacks.picker.grep {
+            dirs = { vim.fn.expand '%:p:h' },
+            search = require('snacks.picker.core.picker'):word(),
+          }
+        end,
+        desc = 'Search Directory',
       },
       {
         '<leader><space>',

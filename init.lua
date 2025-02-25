@@ -118,6 +118,7 @@ vim.keymap.set('n', '<leader>wd', vim.cmd.clo, { desc = 'Close Window ' })
 vim.keymap.set('n', '<leader>ff', '<cmd>e %:p:h<tab>', { desc = 'Find File' })
 vim.keymap.set('n', '<leader>wm', vim.cmd.only, { desc = 'Close all other windows' })
 vim.keymap.set('n', '<leader>wu', todo, { desc = 'Undo Window ' })
+vim.keymap.set('n', '<leader>qt', vim.cmd.tabclose, { desc = 'Close Tab' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`

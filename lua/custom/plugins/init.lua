@@ -94,6 +94,13 @@ return {
       'nvim-telescope/telescope.nvim',
       'folke/snacks.nvim',
     },
+    opts = {
+      disable_hint = true,
+      integrations = {
+        diffview = true,
+        telescope = true,
+      },
+    },
     keys = {
       {
         '<leader>gg',
@@ -102,6 +109,24 @@ return {
           require('neogit').open { cwd = git.get_root() }
         end,
         desc = 'Open Neogit',
+      },
+    },
+  },
+  {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    lazy = false,
+    keys = {
+      {
+        '<leader>o-',
+        '<cmd>Oil<cr>',
+        desc = 'Open file browser',
       },
     },
   },
