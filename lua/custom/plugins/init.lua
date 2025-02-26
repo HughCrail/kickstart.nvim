@@ -1,4 +1,4 @@
-return {
+local plugin_specs = {
   'tpope/vim-sleuth',
   {
     'github/copilot.vim',
@@ -40,11 +40,19 @@ return {
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '' },
+        topdelete = { text = '' },
+        changedelete = { text = '▎' },
+        untracked = { text = '▎' },
+      },
+      signs_staged = {
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '' },
+        topdelete = { text = '' },
+        changedelete = { text = '▎' },
       },
     },
   },
@@ -77,7 +85,9 @@ return {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
+    opts = {
+      signs = true,
+    },
   },
 
   -- require 'kickstart.plugins.debug',
@@ -131,3 +141,12 @@ return {
     },
   },
 }
+if vim.env.NVIM_JOB_PLUGIN then
+  table.insert(plugin_specs, {
+    {
+      dir = vim.env.NVIM_JOB_PLUGIN,
+      opts = {},
+    },
+  })
+end
+return plugin_specs
