@@ -58,6 +58,7 @@ vim.opt.splitbelow = true
 --  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.tabstop = 4
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -114,7 +115,7 @@ vim.keymap.set('n', '<leader>qq', vim.cmd.qa, { desc = 'Quit ' })
 vim.keymap.set('n', '<leader>wv', vim.cmd.vsp, { desc = 'Veritcal Split ' })
 vim.keymap.set('n', '<leader>ws', vim.cmd.sp, { desc = 'Horizontal Split ' })
 vim.keymap.set('n', '<leader>wd', vim.cmd.clo, { desc = 'Close Window ' })
-vim.keymap.set('n', '<leader>ff', '<cmd>e %:p:h<tab>', { desc = 'Find File' })
+vim.keymap.set('n', '<leader>ff', ':e %:p:h<tab>', { desc = 'Find File' })
 vim.keymap.set('n', '<leader>wm', vim.cmd.only, { desc = 'Close all other windows' })
 vim.keymap.set('n', '<leader>wu', todo, { desc = 'Undo Window ' })
 vim.keymap.set('n', '<leader>qt', vim.cmd.tabclose, { desc = 'Close Tab' })
@@ -133,7 +134,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-if vim.fn.has 'win32' then
+if vim.fn.has 'win32' == 1 then
   vim.opt.shell = 'powershell.exe'
 end
 
@@ -142,7 +143,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0
   vim.g.neovide_scroll_animation_length = 0
   vim.g.neovide_position_animation_length = 0
-  if vim.fn.has 'win32' then
+  if vim.fn.has 'win32' == 1 then
     vim.fn.chdir(vim.g.repo_dir)
     local font = 'FiraCode Nerd Font'
     local defaut_size = 15

@@ -4,10 +4,7 @@ local plugin_specs = {
     'github/copilot.vim',
     init = function()
       vim.g.copilot_enabled = true
-      -- if windows then set copilot_workspace_folders to repo dir
-      if vim.fn.has 'win32' then
-        vim.g.copilot_workspace_folders = { 'C:/dev/repos' }
-      end
+      vim.g.copilot_workspace_folders = { vim.g.repo_dir }
     end,
     config = function()
       vim.keymap.set('i', '<m-l>', 'copilot#AcceptWord("")', {
@@ -119,24 +116,6 @@ local plugin_specs = {
           require('neogit').open { cwd = git.get_root() }
         end,
         desc = 'Open Neogit',
-      },
-    },
-  },
-  {
-    'stevearc/oil.nvim',
-    ---@module 'oil'
-    ---@type oil.SetupOpts
-    opts = {},
-    -- Optional dependencies
-    -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if you prefer nvim-web-devicons
-    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-    lazy = false,
-    keys = {
-      {
-        '<leader>o-',
-        '<cmd>Oil<cr>',
-        desc = 'Open file browser',
       },
     },
   },

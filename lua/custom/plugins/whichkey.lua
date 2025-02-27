@@ -46,9 +46,11 @@ return { -- Useful plugin to show you pending keybinds.
     -- Document existing key chains
     spec = {
       { '<leader>b', group = 'Buffer' },
-      { '<leader>c', group = 'Code', mode = { 'n', 'x' } },
+      { '<leader>c', group = 'Code' },
+      { '<leader>cw', group = 'Workspace' },
       { '<leader>f', group = 'File' },
       { '<leader>g', group = 'Git' },
+      { '<leader>gb', group = 'Blame' },
       { '<leader>h', group = 'Help' },
       { '<leader>i', group = 'Insert' },
       { '<leader>m', group = 'Mode' },
