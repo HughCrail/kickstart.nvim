@@ -22,7 +22,7 @@ require('lazy').setup({
     enabled = false,
   },
   dev = {
-    path = vim.env.REPO_DIR or '~/repos',
+    path = vim.g.repo_dir,
   },
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

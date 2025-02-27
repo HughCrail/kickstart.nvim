@@ -12,9 +12,33 @@ return {
     picker = {
       frecency = true,
     },
+    gitbrowse = {
+      config = function(opts, _)
+        for _, v in ipairs(vim.g.additional_gitbrowse_remote_patterns or {}) do
+          table.insert(opts.remote_patterns, v)
+        end
+        for k, v in pairs(vim.g.additional_gitbrowse_url_patterns or {}) do
+          opts.url_patterns[k] = v
+        end
+      end,
+    },
   },
   keys = function()
     local keymappings = {
+      {
+        '<leader>d',
+        function()
+          Snacks.picker.diagnostics_buffer()
+        end,
+        desc = 'Search Diagnostics In Buffer',
+      },
+      {
+        '<leader>D',
+        function()
+          Snacks.picker.diagnostics()
+        end,
+        desc = 'Search Diagnostics',
+      },
       {
         '<leader>vf',
         function()
@@ -264,84 +288,6 @@ return {
         desc = 'Select Scratch Buffer',
       },
     }
-
-    if vim.fn.has 'win32' then
-      -- TODO: Add picker for searching in R+ bundles in repos - identified by the presence of a bundle.json file
-      table.insert(keymappings, {
-        '<leader>su',
-        function()
-          Snacks.picker.grep {
-            dirs = { 'C:/dev/repos/uiinf-sotr' },
-            title = 'uiinf-sotr',
-          }
-        end,
-        desc = 'Search uiinf-sotr',
-      })
-      table.insert(keymappings, {
-        '<leader>sU',
-        function()
-          Snacks.picker.grep {
-            dirs = { 'C:/dev/repos/uiinf-sotr' },
-            search = require('snacks.picker.core.picker'):word(),
-            title = 'uiinf-sotr',
-          }
-        end,
-        mode = { 'n', 'v' },
-        desc = 'Search uiinf-sotr for thing at point',
-      })
-      table.insert(keymappings, {
-        '<leader>pr',
-        function()
-          require('custom.utils').get_rplus_dirs(function(dirs)
-            local items = {}
-            for _, path in ipairs(dirs) do
-              table.insert(items, {
-                text = vim.fs.basename(path),
-                file = path,
-              })
-            end
-            Snacks.picker.pick {
-              format = 'file',
-              title = 'R+ Bundles',
-              items = items,
-              confirm = 'load_session',
-              win = {
-                preview = { minimal = true },
-                input = {
-                  keys = {
-                    -- every action will always first change the cwd of the current tabpage to the project
-                    ['<c-e>'] = { { 'tcd', 'picker_explorer' }, mode = { 'n', 'i' } },
-                    ['<c-f>'] = { { 'tcd', 'picker_files' }, mode = { 'n', 'i' } },
-                    ['<c-g>'] = { { 'tcd', 'picker_grep' }, mode = { 'n', 'i' } },
-                    ['<c-r>'] = { { 'tcd', 'picker_recent' }, mode = { 'n', 'i' } },
-                    ['<c-w>'] = { { 'tcd' }, mode = { 'n', 'i' } },
-                    ['<c-t>'] = {
-                      function(picker)
-                        vim.cmd 'tabnew'
-                        Snacks.notify 'New tab opened'
-                        picker:close()
-                        Snacks.picker.projects()
-                      end,
-                      mode = { 'n', 'i' },
-                    },
-                  },
-                },
-              },
-            }
-          end)
-        end,
-        desc = 'Find R+ Bundles',
-      })
-      table.insert(keymappings, {
-        '<leader>sb',
-        function()
-          require('custom.utils').get_rplus_dirs(function(dirs)
-            Snacks.picker.grep { dirs = dirs, title = 'R+ Bundles' }
-          end)
-        end,
-        desc = 'Search in R+ Bundles',
-      })
-    end
 
     return keymappings
   end,

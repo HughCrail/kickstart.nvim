@@ -4,6 +4,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.g.repo_dir = (vim.env.REPO_DIR or '~/repos'):gsub('\\', '/')
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
@@ -76,9 +78,6 @@ vim.opt.textwidth = 80
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -144,7 +143,7 @@ if vim.g.neovide then
   vim.g.neovide_scroll_animation_length = 0
   vim.g.neovide_position_animation_length = 0
   if vim.fn.has 'win32' then
-    vim.fn.chdir 'C:/dev/repos'
+    vim.fn.chdir(vim.g.repo_dir)
     local font = 'FiraCode Nerd Font'
     local defaut_size = 15
     vim.o.guifont = font .. ':h' .. defaut_size

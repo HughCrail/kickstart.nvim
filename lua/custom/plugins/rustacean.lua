@@ -23,11 +23,9 @@ return {
                 enable = true,
               },
             },
-            -- Disabled because we are using bacon-ls
-            checkOnSave = false,
-            -- Disabled because we are using bacon-ls
+            checkOnSave = true,
             diagnostics = {
-              enable = false,
+              enable = true,
             },
             procMacro = {
               enable = true,
