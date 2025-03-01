@@ -59,6 +59,7 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.tabstop = 4
+vim.opt.expandtab = true
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -107,18 +108,24 @@ vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Move to window on the righ
 local todo = function()
   vim.cmd 'echo "unimplemented"'
 end
+
 -- Doom compatible keybinds
 vim.keymap.set('n', '<leader>fs', '<cmd>w<cr><esc>', { desc = 'Save the current buffer' })
-vim.keymap.set('n', '<leader>bn', vim.cmd.bn, { desc = 'Next Buffer' })
-vim.keymap.set('n', '<leader>bp', vim.cmd.bp, { desc = 'Previous Buffer' })
 vim.keymap.set('n', '<leader>qq', vim.cmd.qa, { desc = 'Quit ' })
 vim.keymap.set('n', '<leader>wv', vim.cmd.vsp, { desc = 'Veritcal Split ' })
 vim.keymap.set('n', '<leader>ws', vim.cmd.sp, { desc = 'Horizontal Split ' })
 vim.keymap.set('n', '<leader>wd', vim.cmd.clo, { desc = 'Close Window ' })
-vim.keymap.set('n', '<leader>ff', ':e %:p:h<tab>', { desc = 'Find File' })
+vim.keymap.set('n', '<leader>ff', function()
+  local p = vim.fn.expand '%:h:p'
+  vim.fn.feedkeys(':e ' .. p .. '/', 'n')
+end, { desc = 'Find File' })
 vim.keymap.set('n', '<leader>wm', vim.cmd.only, { desc = 'Close all other windows' })
 vim.keymap.set('n', '<leader>wu', todo, { desc = 'Undo Window ' })
 vim.keymap.set('n', '<leader>qt', vim.cmd.tabclose, { desc = 'Close Tab' })
+vim.keymap.set('n', '<leader>fn', ':enew | startinsert<cr>', { desc = 'New File' })
+
+vim.keymap.set('n', '<m-q>', 'gwip', { desc = 'Reflow paragraph' })
+vim.keymap.set('n', '<leader>bl', '<c-6>', { desc = 'Toggle last buffer' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`

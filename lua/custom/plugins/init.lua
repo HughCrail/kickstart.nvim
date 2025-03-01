@@ -119,6 +119,13 @@ local plugin_specs = {
       },
     },
   },
+  {
+    'ton/vim-bufsurf',
+    init = function()
+      vim.keymap.set('n', '<leader>bn', '<Plug>(buf-surf-forward)', { desc = 'Next Buffer' })
+      vim.keymap.set('n', '<leader>bp', '<Plug>(buf-surf-back)', { desc = 'Prev Buffer' })
+    end,
+  },
 }
 if vim.env.NVIM_JOB_PLUGIN then
   table.insert(plugin_specs, {
