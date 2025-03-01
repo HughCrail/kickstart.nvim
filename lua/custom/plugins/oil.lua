@@ -18,6 +18,7 @@ return {
       win_options = {
         winbar = '%!v:lua.get_oil_winbar()',
       },
+      skip_confirm_for_simple_edits = false,
     },
     -- Optional dependencies
     -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
