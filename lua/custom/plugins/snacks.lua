@@ -277,13 +277,6 @@ return {
       desc = 'Command History',
     },
     {
-      '<leader>n',
-      function()
-        Snacks.picker.notifications()
-      end,
-      desc = 'Notification History',
-    },
-    {
       '<leader>bb',
       function()
         Snacks.picker.buffers()

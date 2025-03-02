@@ -11,7 +11,7 @@ return {
           on_attach = function(_, bufnr)
             vim.keymap.set('n', '<leader>me', function()
               vim.cmd.RustLsp 'explainError'
-            end, { silent = true, buffer = bufnr })
+            end, { silent = true, buffer = bufnr, description = 'Explain error' })
           end,
         },
         default_settings = {
@@ -52,14 +52,5 @@ return {
         },
       }
     end,
-  },
-  {
-    'nvim-neotest/neotest',
-    optional = true,
-    opts = {
-      adapters = {
-        ['rustaceanvim.neotest'] = {},
-      },
-    },
   },
 }

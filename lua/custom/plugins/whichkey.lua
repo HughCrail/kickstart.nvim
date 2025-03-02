@@ -1,3 +1,10 @@
+local ftCond = function(ft)
+  return function()
+    -- filtype is norg
+    return vim.bo.filetype == ft
+  end
+end
+
 return { -- Useful plugin to show you pending keybinds.
   'folke/which-key.nvim',
   event = 'VimEnter',
@@ -54,13 +61,18 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>h', group = 'Help' },
       { '<leader>i', group = 'Insert' },
       { '<leader>m', group = 'Mode' },
+      { '<leader>mi', group = 'Insert', cond = ftCond 'norg' },
+      { '<leader>ml', group = 'List', cond = ftCond 'norg' },
+      { '<leader>mt', group = 'Task', cond = ftCond 'norg' },
+      { '<leader>n', group = 'Note' },
       { '<leader>o', group = 'Open' },
       { '<leader>p', group = 'Project' },
       { '<leader>q', group = 'Quit' },
       { '<leader>s', group = 'Search' },
       { '<leader>sO', group = 'Search Online For Thing At Point' },
       { '<leader>so', group = 'Search Online' },
-      { '<leader>t', group = 'Toggle' },
+      { '<leader>t', group = 'Task/Test' },
+      { '<leader>T', group = 'Toggle' },
       { '<leader>v', group = 'Vim' },
       { '<leader>vp', group = 'Vim Plugins' },
       { '<leader>w', group = 'Window' },

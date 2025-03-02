@@ -86,7 +86,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 vim.keymap.set('t', '<C-/>', '<cmd>close<cr>', { desc = 'Hide Terminal' })
 
@@ -157,7 +157,7 @@ if vim.g.neovide then
     vim.o.guifont = font .. ':h' .. defaut_size
     -- Bindings to dynamically increase and decrease font size
   end
-  vim.keymap.set('n', '<leader>tf', function()
+  vim.keymap.set('n', '<leader>Tf', function()
     vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
   end, { desc = 'Toggle Fullscreen' })
   vim.keymap.set({ 'n', 'v' }, '<C-+>', function()

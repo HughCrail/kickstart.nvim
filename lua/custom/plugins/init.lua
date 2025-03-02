@@ -18,7 +18,7 @@ local plugin_specs = {
         silent = true,
       })
       -- Toggle Copilot
-      vim.keymap.set('n', '<leader>tc', function()
+      vim.keymap.set('n', '<leader>Tc', function()
         if vim.g.copilot_enabled then
           vim.cmd 'Copilot disable'
           vim.g.copilot_enabled = false
