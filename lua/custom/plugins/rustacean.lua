@@ -11,7 +11,7 @@ return {
           on_attach = function(_, bufnr)
             vim.keymap.set('n', '<leader>me', function()
               vim.cmd.RustLsp 'explainError'
-            end, { silent = true, buffer = bufnr, description = 'Explain error' })
+            end, { silent = true, buffer = bufnr, desc = 'Explain error' })
           end,
         },
         default_settings = {
