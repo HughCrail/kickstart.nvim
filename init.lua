@@ -123,6 +123,7 @@ vim.keymap.set('n', '<leader>wm', vim.cmd.only, { desc = 'Close all other window
 vim.keymap.set('n', '<leader>wu', todo, { desc = 'Undo Window ' })
 vim.keymap.set('n', '<leader>qt', vim.cmd.tabclose, { desc = 'Close Tab' })
 vim.keymap.set('n', '<leader>fn', ':enew | startinsert<cr>', { desc = 'New File' })
+vim.keymap.set('n', '<leader>br', ':e %', { desc = 'Refresh buffer' })
 
 vim.keymap.set('n', '<m-q>', 'gwip', { desc = 'Reflow paragraph' })
 vim.keymap.set('n', '<leader>bl', '<c-6>', { desc = 'Toggle last buffer' })
