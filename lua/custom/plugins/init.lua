@@ -113,7 +113,7 @@ local plugin_specs = {
         '<leader>gg',
         function()
           local git = require 'snacks.git'
-          require('neogit').open { cwd = git.get_root() }
+          require('neogit').open { cwd = git.get_root(), kind = 'replace' }
         end,
         desc = 'Open Neogit',
       },
