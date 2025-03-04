@@ -131,6 +131,19 @@ vim.keymap.set('n', '<leader>bl', '<c-6>', { desc = 'Toggle last buffer' })
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
+vim.api.nvim_create_autocmd('BufEnter', {
+  desc = 'Change to git root when entering a buffer',
+  callback = function()
+    local path = vim.fn.expand '<afile>'
+    local root = require('snacks.git').get_root(path)
+    if root then
+      vim.api.nvim_set_current_dir(root)
+    else
+      vim.api.nvim_set_current_dir(vim.fs.dirname(path))
+    end
+  end,
+})
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`

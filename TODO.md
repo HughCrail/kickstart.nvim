@@ -3,5 +3,5 @@
 - When selecting a project (or anything from a snacks picker) it should but the
   resulting buffer in the window I embarked from
 - Quick open weekly org file
-- overseer status in task bar
 - overseer template to select a .t.{ts,js} file and run it
+- find other file .cpp -> .h etc..
