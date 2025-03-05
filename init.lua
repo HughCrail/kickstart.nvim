@@ -178,6 +178,10 @@ if vim.g.neovide then
   vim.keymap.set('n', '<leader>Tf', function()
     vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
   end, { desc = 'Toggle Fullscreen' })
+  vim.keymap.set('n', '<f11>', function()
+    vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
+  end, { desc = 'Toggle Fullscreen' })
+
   vim.keymap.set({ 'n', 'v' }, '<C-+>', function()
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1
   end, { desc = 'Increase Font Size' })
