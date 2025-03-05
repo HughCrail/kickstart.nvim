@@ -22,6 +22,10 @@ vim.opt.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
+-- Set spell check to US english
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true
+
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -135,6 +139,11 @@ vim.api.nvim_create_autocmd('BufEnter', {
   desc = 'Change to git root when entering a buffer',
   callback = function()
     local path = vim.fn.expand '<afile>'
+    -- return if path starts with a protocol like diffview://
+    if path:match '://' then
+      return
+    end
+
     local root = require('snacks.git').get_root(path)
     if root then
       pcall(function()

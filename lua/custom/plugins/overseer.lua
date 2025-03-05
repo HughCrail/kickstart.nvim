@@ -12,6 +12,17 @@ return {
   opts = {},
   keys = {
     {
+      '<leader>tX',
+      function()
+        local overseer = require 'overseer'
+        local tasks = overseer.list_tasks()
+        for _, task in ipairs(tasks) do
+          overseer.run_action(task, 'dispose')
+        end
+      end,
+      desc = 'Dispose all tasks',
+    },
+    {
       '<leader>tt',
       function()
         doActionOnLastTask 'restart'
