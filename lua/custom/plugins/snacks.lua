@@ -85,9 +85,9 @@ return {
             },
           },
           actions = {
-            open_neogit = function(p, item)
+            open_neogit = function(_, item)
               if item then
-                require('neogit').open { cwd = Snacks.picker.util.dir(item) }
+                require('neogit').open { cwd = Snacks.picker.util.dir(item), kind = 'replace' }
               end
             end,
           },

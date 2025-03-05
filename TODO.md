@@ -5,3 +5,4 @@
 - Quick open weekly org file
 - overseer template to select a .t.{ts,js} file and run it
 - find other file .cpp -> .h etc..
+- ctrl-g from pickers to open neogit should aslo change dir
