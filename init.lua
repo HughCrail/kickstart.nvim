@@ -22,7 +22,7 @@ vim.opt.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
--- Set spell check to US english
+-- Set spell check to US English
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 
@@ -147,11 +147,11 @@ vim.api.nvim_create_autocmd('BufEnter', {
     local root = require('snacks.git').get_root(path)
     if root then
       pcall(function()
-        vim.api.nvim_set_current_dir(root)
+        vim.api.nvim_set_current_dir(vim.fs.normalize(root))
       end)
     else
       pcall(function()
-        vim.api.nvim_set_current_dir(vim.fs.dirname(path))
+        vim.api.nvim_set_current_dir(vim.fs.normalize(vim.fs.dirname(path)))
       end)
     end
   end,

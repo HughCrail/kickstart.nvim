@@ -6,3 +6,4 @@
 - overseer template to select a .t.{ts,js} file and run it
 - find other file .cpp -> .h etc..
 - better default diffview mergetool layout
+- check autocmd to change root works when current dir is a git dir
