@@ -140,7 +140,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
   callback = function()
     local path = vim.fn.expand '<afile>'
     -- return if path starts with a protocol like diffview://
-    if path:match '://' then
+    if path == 'NeogitStatus' or path == '' or path:match '://' then
       return
     end
 
