@@ -7,3 +7,5 @@
 - find other file .cpp -> .h etc..
 - better default diffview mergetool layout
 - check autocmd to change root works when current dir is a git dir
+- why do things not get added to project picker (should we have a simpler find
+git dir?)
