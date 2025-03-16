@@ -132,6 +132,8 @@ vim.keymap.set('n', '<leader>br', ':e %<cr>', { desc = 'Refresh buffer' })
 vim.keymap.set('n', '<m-q>', 'gwip', { desc = 'Reflow paragraph' })
 vim.keymap.set('n', '<leader>bl', '<c-6>', { desc = 'Toggle last buffer' })
 
+vim.keymap.set('n', '<leader>fo', require('custom.utils').gotoNextOtherFile, { desc = 'Find Other File' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

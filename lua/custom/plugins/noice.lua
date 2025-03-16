@@ -18,6 +18,9 @@ return {
         ['vim.lsp.util.stylize_markdown'] = true,
       },
     },
+    messages = {
+      view = 'mini',
+    },
     -- you can enable a preset for easier configuration
     presets = {
       bottom_search = true, -- use a classic bottom cmdline for search
