@@ -4,6 +4,11 @@ return {
   version = '*',
   opts = {
     load = {
+      ['core.keybinds'] = {
+        config = {
+          default_keybinds = false,
+        },
+      },
       ['core.defaults'] = {},
       ['core.concealer'] = {},
       ['core.dirman'] = {

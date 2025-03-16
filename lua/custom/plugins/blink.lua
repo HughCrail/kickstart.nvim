@@ -39,6 +39,9 @@ return {
         -- adding any nvim-cmp sources here will enable them
         -- with blink.compat
         -- compat = {},
+        per_filetype = {
+          org = { 'orgmode' },
+        },
         default = {
           'conventional_commits',
           'lazydev',
@@ -50,6 +53,11 @@ return {
         },
 
         providers = {
+          orgmode = {
+            name = 'Orgmode',
+            module = 'orgmode.org.autocompletion.blink',
+            fallbacks = { 'snipptes', 'path', 'buffer' },
+          },
           conventional_commits = {
             name = 'Conventional Commits',
             module = 'blink-cmp-conventional-commits',
