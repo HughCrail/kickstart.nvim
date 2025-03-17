@@ -9,3 +9,11 @@
 - check autocmd to change root works when current dir is a git dir
 - why do things not get added to project picker (should we have a simpler find
 git dir?)
+- alt-k alt-j should move thing up 
+- Get rid of messages for yank / paste
+- Quickly open special files like default.config, global rplus.json,
+blpwtkctrl.dat
+- key to clear notifications
+
+
+

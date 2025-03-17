@@ -4,6 +4,6 @@ return { -- Collection of various small independent plugins/modules
     require('mini.ai').setup { n_lines = 500 }
     require('mini.surround').setup()
     require('mini.misc').setup()
-    vim.keymap.set('n', '<leader>ww', MiniMisc.zoom, { desc = 'Zoom Window' })
+    -- vim.keymap.set('n', '<leader>ww', MiniMisc.zoom, { desc = 'Zoom Window' }) BUG: This is broken
   end,
 }
