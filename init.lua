@@ -139,8 +139,31 @@ vim.keymap.set('t', '<C-S-v>', '<C-\\><C-N>"+pA', { desc = 'Paste from clipboard
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
+local projectBindings = {
+  ['aoc-2023'] = function()
+    vim.keymap.set('n', '<leader>ar', function()
+      local fname = vim.api.nvim_buf_get_name(0)
+      local bname = vim.fs.basename(fname)
+      if not bname then
+        return
+      end
+      local day = string.match(bname, '^(%d+).rs$')
+      if day then
+        local overseer = require 'overseer'
+        local task = overseer.new_task {
+          cmd = 'cargo',
+          args = { 'read', day },
+          cwd = require('snacks.git').get_root(fname),
+        }
+        task:start()
+        overseer.run_action(task, 'open')
+      end
+    end, { buffer = true, desc = 'Read this days puzzle description' })
+  end,
+}
+
 vim.api.nvim_create_autocmd('BufEnter', {
-  desc = 'Change to git root when entering a buffer',
+  desc = 'Change to git root when entering a buffer and set up project specific keybinds',
   callback = function()
     local path = vim.fn.expand '<afile>'
     -- return if path starts with a protocol like diffview://
@@ -151,7 +174,13 @@ vim.api.nvim_create_autocmd('BufEnter', {
     local root = require('snacks.git').get_root(path)
     if root then
       pcall(function()
-        vim.api.nvim_set_current_dir(vim.fs.normalize(root))
+        local normalPath = vim.fs.normalize(root)
+        vim.api.nvim_set_current_dir(normalPath)
+        local repoName = vim.fs.basename(normalPath)
+        local projBindings = projectBindings[repoName]
+        if projBindings then
+          projBindings()
+        end
       end)
     else
       pcall(function()
