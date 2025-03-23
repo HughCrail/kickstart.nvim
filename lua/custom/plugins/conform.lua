@@ -29,6 +29,7 @@ return { -- Autoformat
       typescript = { 'prettier' },
       typescriptreact = { 'prettier' },
       markdown = { 'prettier' },
+      rust = { 'rustfmt' },
     },
   },
 }

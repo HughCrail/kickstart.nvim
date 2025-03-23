@@ -134,6 +134,8 @@ vim.keymap.set('n', '<leader>bl', '<c-6>', { desc = 'Toggle last buffer' })
 
 vim.keymap.set('n', '<leader>fo', require('custom.utils').gotoNextOtherFile, { desc = 'Find Other File' })
 
+vim.keymap.set('t', '<C-S-v>', '<C-\\><C-N>"+pA', { desc = 'Paste from clipboard' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

@@ -44,14 +44,28 @@ return {
     {
       '<leader>d',
       function()
-        Snacks.picker.diagnostics_buffer()
+        Snacks.picker.diagnostics_buffer {
+          layout = {
+            preset = 'vertical',
+            layout = {
+              width = 0,
+            },
+          },
+        }
       end,
       desc = 'Search Diagnostics In Buffer',
     },
     {
       '<leader>D',
       function()
-        Snacks.picker.diagnostics()
+        Snacks.picker.diagnostics {
+          layout = {
+            preset = 'vertical',
+            layout = {
+              width = 0,
+            },
+          },
+        }
       end,
       desc = 'Search Diagnostics',
     },
