@@ -87,7 +87,7 @@ return {
       desc = 'Search Lazy Plugins',
     },
     {
-      '<leader>pp',
+      '<leader>pP',
       function()
         Snacks.picker.projects {
           dev = vim.g.repo_dir,

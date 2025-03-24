@@ -163,7 +163,7 @@ local projectBindings = {
 }
 
 vim.api.nvim_create_autocmd('BufEnter', {
-  desc = 'Change to git root when entering a buffer and set up project specific keybinds',
+  desc = 'Set up project specific keybinds',
   callback = function()
     local path = vim.fn.expand '<afile>'
     -- return if path starts with a protocol like diffview://
@@ -175,17 +175,17 @@ vim.api.nvim_create_autocmd('BufEnter', {
     if root then
       pcall(function()
         local normalPath = vim.fs.normalize(root)
-        vim.api.nvim_set_current_dir(normalPath)
+        -- vim.api.nvim_set_current_dir(normalPath)
         local repoName = vim.fs.basename(normalPath)
         local projBindings = projectBindings[repoName]
         if projBindings then
           projBindings()
         end
       end)
-    else
-      pcall(function()
-        vim.api.nvim_set_current_dir(vim.fs.normalize(vim.fs.dirname(path)))
-      end)
+      -- else
+      --   pcall(function()
+      -- vim.api.nvim_set_current_dir(vim.fs.normalize(vim.fs.dirname(path)))
+      --   end)
     end
   end,
 })
