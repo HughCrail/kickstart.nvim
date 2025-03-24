@@ -167,7 +167,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
   callback = function()
     local path = vim.fn.expand '<afile>'
     -- return if path starts with a protocol like diffview://
-    if path == 'NeogitStatus' or path == '' or path:match '://' then
+    if path:match 'NeogitStatus' or path == '' or path:match '://' then
       return
     end
 
@@ -205,18 +205,19 @@ if vim.fn.has 'win32' == 1 then
   vim.opt.shell = 'powershell.exe'
 end
 
+if vim.g.neovide or vim.g.nvy or vim.g.goneovim then
+  vim.fn.chdir(vim.g.repo_dir)
+end
+
+local font = 'FiraCode Nerd Font'
+local defaut_size = 15
+vim.o.guifont = font .. ':h' .. defaut_size
+
 if vim.g.neovide then
   vim.g.neovide_fullscreen = true
   vim.g.neovide_cursor_animation_length = 0
   vim.g.neovide_scroll_animation_length = 0
   vim.g.neovide_position_animation_length = 0
-  if vim.fn.has 'win32' == 1 then
-    vim.fn.chdir(vim.g.repo_dir)
-    local font = 'FiraCode Nerd Font'
-    local defaut_size = 15
-    vim.o.guifont = font .. ':h' .. defaut_size
-    -- Bindings to dynamically increase and decrease font size
-  end
   vim.keymap.set('n', '<leader>Tf', function()
     vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
   end, { desc = 'Toggle Fullscreen' })

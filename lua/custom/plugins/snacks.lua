@@ -26,6 +26,9 @@ return {
       end,
     },
   },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+  },
   keys = {
     {
       '<leader>gll',
@@ -246,9 +249,18 @@ return {
     {
       '<c-/>',
       function()
-        Snacks.terminal()
+        Snacks.terminal(nil, {
+          cwd = require('snacks.git').get_root(),
+        })
       end,
       desc = 'Toggle Terminal',
+    },
+    {
+      '<leader>ot',
+      function()
+        Snacks.terminal(nil, { cwd = vim.fn.expand '%:p:h' })
+      end,
+      desc = 'Open Terminal For Current File Dir',
     },
     {
       '<leader>vps',
@@ -330,6 +342,29 @@ return {
         Snacks.scratch.select()
       end,
       desc = 'Select Scratch Buffer',
+    },
+    {
+      '<leader>fS',
+      function()
+        local specialFiles = {}
+        -- Add vim.g.special_work_files to specialFiles
+        for _, v in ipairs(vim.g.special_work_files or {}) do
+          table.insert(specialFiles, {
+            text = v,
+            file = v,
+          })
+        end
+
+        Snacks.picker.pick {
+          format = 'file',
+          title = 'Special Files',
+          items = specialFiles,
+          win = {
+            preview = { minimal = true },
+          },
+        }
+      end,
+      desc = 'Find Special File',
     },
   },
 }

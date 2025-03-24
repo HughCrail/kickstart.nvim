@@ -40,11 +40,13 @@ return {
       '<leader>tr',
       ':OverseerRun<cr>',
       desc = 'Run task',
+      silent = true,
     },
     {
       '<leader>tor',
       ':OverseerToggle<cr>',
       desc = 'Show task run panel',
+      silent = true,
     },
   },
 }
