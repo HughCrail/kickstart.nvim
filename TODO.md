@@ -5,9 +5,6 @@
 two buffers of the same file are open
 - Quick open weekly org file
 - overseer template to select a .t.{ts,js} file and run it
-- better default diffview mergetool layout
 - check autocmd to change root works when current dir is a git dir ? still
 needed ?
-- alt-k alt-j should move thing up 
 - key to clear notifications
-- mini.surround visual mode - e.g. Highlight then add surrounds

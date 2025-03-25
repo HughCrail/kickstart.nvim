@@ -64,7 +64,16 @@ local plugin_specs = {
     'NeogitOrg/neogit',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'sindrets/diffview.nvim',
+      {
+        'sindrets/diffview.nvim',
+        opts = {
+          view = {
+            merge_tool = {
+              layout = 'diff3_mixed',
+            },
+          },
+        },
+      },
       'nvim-telescope/telescope.nvim',
       'folke/snacks.nvim',
     },
