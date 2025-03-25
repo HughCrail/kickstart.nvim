@@ -202,7 +202,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 if vim.fn.has 'win32' == 1 then
-  vim.opt.shell = 'powershell.exe'
+  vim.opt.shell = 'cmd.exe'
 end
 
 if vim.g.neovide or vim.g.nvy or vim.g.goneovim then
