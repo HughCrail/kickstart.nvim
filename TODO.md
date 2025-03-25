@@ -5,16 +5,9 @@
 two buffers of the same file are open
 - Quick open weekly org file
 - overseer template to select a .t.{ts,js} file and run it
-- find other file .cpp -> .h etc..
 - better default diffview mergetool layout
-- check autocmd to change root works when current dir is a git dir
-- why do things not get added to project picker (should we have a simpler find
-git dir?)
+- check autocmd to change root works when current dir is a git dir ? still
+needed ?
 - alt-k alt-j should move thing up 
-- Get rid of messages for yank / paste
-- Quickly open special files like default.config, global rplus.json,
-blpwtkctrl.dat
 - key to clear notifications
-
-
-
+- mini.surround visual mode - e.g. Highlight then add surrounds
