@@ -3,6 +3,8 @@ return {
   lazy = false,
   config = function()
     require('project_nvim').setup {
+      patterns = { '.git' },
+      detection_methods = { 'pattern' },
       exclude_dirs = { '~/.local/*' },
     }
   end,
@@ -31,6 +33,7 @@ return {
             text = result,
             dir = vim.fs.dirname(result) .. '/',
             file = result,
+            value = result,
             name = name,
           })
           longest_name = math.max(longest_name, #name)
@@ -58,6 +61,7 @@ return {
           win = {
             input = {
               keys = {
+                ['<c-x>'] = { 'delete_project', mode = { 'n', 'i' } },
                 ['<c-g>'] = { 'open_neogit', mode = { 'n', 'i' } },
                 ['<c-f>'] = { { 'tcd', 'picker_files' }, mode = { 'n', 'i' } },
                 ['<c-s>'] = { { 'tcd', 'picker_grep' }, mode = { 'n', 'i' } },
@@ -65,6 +69,15 @@ return {
             },
           },
           actions = {
+            delete_project = function(_, item)
+              if item then
+                local choice = vim.fn.confirm("Delete '" .. item.value .. "' from project list?", '&Yes\n&No', 2)
+                if choice == 1 then
+                  local history = require 'project_nvim.utils.history'
+                  history.delete_project(item)
+                end
+              end
+            end,
             open_neogit = function(_, item)
               if item then
                 local dir = Snacks.picker.util.dir(item.file)

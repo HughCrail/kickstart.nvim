@@ -8,3 +8,4 @@ two buffers of the same file are open
 - check autocmd to change root works when current dir is a git dir ? still
 needed ?
 - key to clear notifications
+- leader hr to revert hunk
