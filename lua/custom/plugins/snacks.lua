@@ -25,7 +25,18 @@ return {
         end
       end,
     },
+    zen = {
+      toggles = {
+        dim = false,
+      },
+    },
   },
+  init = function()
+    local Snacks = require 'snacks'
+    Snacks.toggle.line_number():map '<leader>Tl'
+    Snacks.toggle.zoom():map('<leader>wm'):map '<leader>TZ'
+    Snacks.toggle.zen():map '<leader>z'
+  end,
   dependencies = {
     'nvim-lua/plenary.nvim',
   },

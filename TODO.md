@@ -9,3 +9,5 @@ two buffers of the same file are open
 needed ?
 - key to clear notifications
 - leader hr to revert hunk
+- Fix recent files - only happens on BSOD?
+- Change toggle prefixy to <leader>u
