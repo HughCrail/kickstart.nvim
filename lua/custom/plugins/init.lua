@@ -1,7 +1,8 @@
 local plugin_specs = {
   'tpope/vim-sleuth',
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
+  {
     'lewis6991/gitsigns.nvim',
+    lazy = false,
     opts = {
       signs = {
         add = { text = '▎' },
@@ -17,6 +18,24 @@ local plugin_specs = {
         delete = { text = '' },
         topdelete = { text = '' },
         changedelete = { text = '▎' },
+      },
+    },
+    keys = {
+      {
+        '<leader>ghr',
+        ':Gitsigns reset_hunk<CR>',
+        {
+          desc = 'Reset Hunk',
+          silent = true,
+        },
+      },
+      {
+        '<leader>ghh',
+        ':Gitsigns preview_hunk_inline<CR>',
+        {
+          desc = 'Reset Hunk',
+          silent = true,
+        },
       },
     },
   },

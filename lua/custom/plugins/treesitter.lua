@@ -9,6 +9,7 @@ return {
       { '<c-space>', desc = 'Increment Selection' },
       { '<bs>', desc = 'Decrement Selection', mode = 'x' },
     },
+    dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
     opts = {
       ensure_installed = {
         'bash',
@@ -47,6 +48,13 @@ return {
         },
       },
       textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ['ic'] = { query = '@comment.outer', desc = 'Comment' },
+          },
+        },
         move = {
           enable = true,
           goto_next_start = { [']f'] = '@function.outer', [']c'] = '@class.outer', [']a'] = '@parameter.inner' },

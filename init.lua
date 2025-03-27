@@ -123,7 +123,7 @@ vim.keymap.set('n', '<leader>ff', function()
   local p = vim.fn.expand '%:h:p'
   vim.fn.feedkeys(':e ' .. p .. '/', 'n')
 end, { desc = 'Find File' })
-vim.keymap.set('n', '<leader>wm', vim.cmd.only, { desc = 'Close all other windows' })
+vim.keymap.set('n', '<leader>wM', vim.cmd.only, { desc = 'Close all other windows' })
 vim.keymap.set('n', '<leader>wu', todo, { desc = 'Undo Window ' })
 vim.keymap.set('n', '<leader>qt', vim.cmd.tabclose, { desc = 'Close Tab' })
 vim.keymap.set('n', '<leader>fn', ':enew | startinsert<cr>', { desc = 'New File' })

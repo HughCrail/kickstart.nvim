@@ -11,3 +11,5 @@ needed ?
 - leader hr to revert hunk
 - Fix recent files - only happens on BSOD?
 - Change toggle prefixy to <leader>u
+- Treesitter text object that contains all adjacent text objects
+- maximize shouldn't get rid of status bar
