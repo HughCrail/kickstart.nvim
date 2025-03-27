@@ -5,6 +5,7 @@ return {
       vim.g.copilot_enabled = true
       vim.g.copilot_workspace_folders = { vim.g.repo_dir }
     end,
+    dependencies = { 'folke/snacks.nvim' },
     config = function()
       vim.keymap.set('i', '<m-l>', 'copilot#AcceptWord("")', {
         expr = true,
@@ -16,20 +17,26 @@ return {
         desc = 'Accept Copilot Line',
         silent = true,
       })
+
       -- Toggle Copilot
-      vim.keymap.set('n', '<leader>uc', function()
-        if vim.g.copilot_enabled then
-          vim.cmd 'Copilot disable'
-          vim.g.copilot_enabled = false
-          vim.notify 'Copilot disabled'
-        else
-          vim.cmd 'Copilot enable'
-          vim.g.copilot_enabled = true
-          vim.notify 'Copilot enabled'
-        end
-      end, {
-        desc = 'Toggle Copilot',
-      })
+
+      require('snacks').toggle
+        .new({
+          name = 'Copilot',
+          get = function()
+            return vim.g.copilot_enabled
+          end,
+          set = function(state)
+            if state then
+              vim.cmd 'Copilot enable'
+              vim.g.copilot_enabled = true
+            else
+              vim.cmd 'Copilot disable'
+              vim.g.copilot_enabled = false
+            end
+          end,
+        })
+        :map '<leader>uc'
     end,
   },
 }

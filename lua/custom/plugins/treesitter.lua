@@ -74,13 +74,30 @@ return {
 
   {
     'nvim-treesitter/nvim-treesitter-context',
+    dependencies = { 'folke/snacks.nvim' },
     opts = { mode = 'cursor', max_lines = 3 },
     config = function()
-      require('treesitter-context').setup {
+      local tscontext = require 'treesitter-context'
+      tscontext.setup {
         enable = true,
         max_lines = 3,
       }
-      vim.keymap.set('n', '<leader>ux', '<cmd>TSContextToggle<cr>', { desc = 'Toggle Treesitter Context' })
+
+      require('snacks').toggle
+        .new({
+          name = 'Treesitter Context',
+          get = function()
+            return tscontext.enabled()
+          end,
+          set = function(state)
+            if state then
+              tscontext.enable()
+            else
+              tscontext.disable()
+            end
+          end,
+        })
+        :map '<leader>ux'
     end,
   },
 }

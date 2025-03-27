@@ -25,6 +25,9 @@ return {
         end
       end,
     },
+    toggle = {
+      notify = false,
+    },
     zen = {
       toggles = {
         dim = false,
@@ -36,6 +39,8 @@ return {
     Snacks.toggle.line_number():map '<leader>ul'
     Snacks.toggle.zoom():map('<leader>wm'):map '<leader>uZ'
     Snacks.toggle.zen():map '<leader>z'
+    Snacks.toggle.inlay_hints():map '<leader>uh'
+    Snacks.toggle.diagnostics():map '<leader>ud'
   end,
   dependencies = {
     'nvim-lua/plenary.nvim',

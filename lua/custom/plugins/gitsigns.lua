@@ -1,9 +1,23 @@
--- Adds git related signs to the gutter, as well as utilities for managing changes
-
 return {
   {
     'lewis6991/gitsigns.nvim',
+    lazy = false,
     opts = {
+      signs = {
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '' },
+        topdelete = { text = '' },
+        changedelete = { text = '▎' },
+        untracked = { text = '▎' },
+      },
+      signs_staged = {
+        add = { text = '▎' },
+        change = { text = '▎' },
+        delete = { text = '' },
+        topdelete = { text = '' },
+        changedelete = { text = '▎' },
+      },
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
 
@@ -36,9 +50,22 @@ return {
         map('n', '<leader>gD', function()
           gitsigns.diffthis '@'
         end, { desc = 'git diff against last commit' })
-        -- Toggles
-        map('n', '<leader>ub', gitsigns.toggle_current_line_blame, { desc = 'Toggle git show blame line' })
-        map('n', '<leader>uD', gitsigns.preview_hunk_inline, { desc = 'Toggle git show deleted' })
+
+        map('n', '<leader>ghr', gitsigns.reset_hunk, { desc = 'Reset Hunk' })
+        map('n', '<leader>ghh', gitsigns.preview_hunk_inline, { desc = 'Preview Hunk' })
+
+        require('snacks').toggle
+          .new({
+            name = 'Current Line Blame',
+            get = function()
+              return require('gitsigns.config').config.current_line_blame
+            end,
+            set = function(state)
+              require('gitsigns.config').config.current_line_blame = state
+              gitsigns.refresh()
+            end,
+          })
+          :map('<leader>ub', { buffer = bufnr })
       end,
     },
   },

@@ -13,3 +13,4 @@ needed ?
 - Change toggle prefix to <leader>u
 - Treesitter text object that contains all adjacent text objects
 - maximize shouldn't get rid of status bar
+* try snacks words?

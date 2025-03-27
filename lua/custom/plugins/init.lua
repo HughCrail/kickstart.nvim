@@ -1,65 +1,10 @@
 local plugin_specs = {
   'tpope/vim-sleuth',
   {
-    'lewis6991/gitsigns.nvim',
-    lazy = false,
-    opts = {
-      signs = {
-        add = { text = '▎' },
-        change = { text = '▎' },
-        delete = { text = '' },
-        topdelete = { text = '' },
-        changedelete = { text = '▎' },
-        untracked = { text = '▎' },
-      },
-      signs_staged = {
-        add = { text = '▎' },
-        change = { text = '▎' },
-        delete = { text = '' },
-        topdelete = { text = '' },
-        changedelete = { text = '▎' },
-      },
-    },
-    keys = {
-      {
-        '<leader>ghr',
-        ':Gitsigns reset_hunk<CR>',
-        {
-          desc = 'Reset Hunk',
-          silent = true,
-        },
-      },
-      {
-        '<leader>ghh',
-        ':Gitsigns preview_hunk_inline<CR>',
-        {
-          desc = 'Reset Hunk',
-          silent = true,
-        },
-      },
-    },
-  },
-
-  {
     'EdenEast/nightfox.nvim',
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'carbonfox'
-    end,
-  },
-
-  {
-    'folke/tokyonight.nvim',
-    priority = 1000,
-    enabled = false,
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
-      vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
 
@@ -74,11 +19,6 @@ local plugin_specs = {
   },
 
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-
   {
     'NeogitOrg/neogit',
     dependencies = {
