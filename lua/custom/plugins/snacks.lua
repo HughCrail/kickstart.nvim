@@ -28,6 +28,9 @@ return {
     toggle = {
       notify = false,
     },
+    words = {
+      enabled = true,
+    },
     zen = {
       toggles = {
         dim = false,
@@ -41,6 +44,7 @@ return {
     Snacks.toggle.zen():map '<leader>z'
     Snacks.toggle.inlay_hints():map '<leader>uh'
     Snacks.toggle.diagnostics():map '<leader>ud'
+    Snacks.toggle.words():map '<leader>uw'
   end,
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -381,6 +385,20 @@ return {
         }
       end,
       desc = 'Find Special File',
+    },
+    {
+      ']r',
+      function()
+        Snacks.words.jump(vim.v.count1, true)
+      end,
+      desc = 'Next Reference',
+    },
+    {
+      '[r',
+      function()
+        Snacks.words.jump(-vim.v.count1, true)
+      end,
+      desc = 'Prev Reference',
     },
   },
 }
