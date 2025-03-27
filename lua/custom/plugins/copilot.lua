@@ -17,7 +17,7 @@ return {
         silent = true,
       })
       -- Toggle Copilot
-      vim.keymap.set('n', '<leader>Tc', function()
+      vim.keymap.set('n', '<leader>uc', function()
         if vim.g.copilot_enabled then
           vim.cmd 'Copilot disable'
           vim.g.copilot_enabled = false

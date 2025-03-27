@@ -72,7 +72,7 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>sO', group = 'Search Online For Thing At Point' },
       { '<leader>so', group = 'Search Online' },
       { '<leader>t', group = 'Task/Test' },
-      { '<leader>T', group = 'Toggle' },
+      { '<leader>u', group = 'Toggle' },
       { '<leader>v', group = 'Vim' },
       { '<leader>vp', group = 'Vim Plugins' },
       { '<leader>w', group = 'Window' },

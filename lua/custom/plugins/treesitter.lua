@@ -80,7 +80,7 @@ return {
         enable = true,
         max_lines = 3,
       }
-      vim.keymap.set('n', '<leader>Tx', '<cmd>TSContextToggle<cr>', { desc = 'Toggle Treesitter Context' })
+      vim.keymap.set('n', '<leader>ux', '<cmd>TSContextToggle<cr>', { desc = 'Toggle Treesitter Context' })
     end,
   },
 }

@@ -218,7 +218,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0
   vim.g.neovide_scroll_animation_length = 0
   vim.g.neovide_position_animation_length = 0
-  vim.keymap.set('n', '<leader>Tf', function()
+  vim.keymap.set('n', '<leader>uf', function()
     vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
   end, { desc = 'Toggle Fullscreen' })
   vim.keymap.set('n', '<f11>', function()
