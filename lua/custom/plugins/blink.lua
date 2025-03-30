@@ -64,12 +64,16 @@ return {
             name = 'LazyDev',
             module = 'lazydev.integrations.blink',
             -- make lazydev completions top priority (see `:h blink.cmp`)
-            score_offset = 100,
+            score_offset = 3,
           },
           snippets = {
             should_show_items = function(ctx)
               return ctx.trigger.initial_kind ~= 'trigger_character'
             end,
+            score_offset = 2,
+          },
+          lsp = {
+            score_offset = 1,
           },
           neorg = {
             name = 'neorg',
