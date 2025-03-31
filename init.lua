@@ -174,18 +174,13 @@ vim.api.nvim_create_autocmd('BufEnter', {
     local root = require('snacks.git').get_root(path)
     if root then
       pcall(function()
-        local normalPath = vim.fs.normalize(root)
-        -- vim.api.nvim_set_current_dir(normalPath)
-        local repoName = vim.fs.basename(normalPath)
+        local absPath = vim.fs.normalize(vim.fs.abspath(root))
+        local repoName = vim.fs.basename(absPath)
         local projBindings = projectBindings[repoName]
         if projBindings then
           projBindings()
         end
       end)
-      -- else
-      --   pcall(function()
-      -- vim.api.nvim_set_current_dir(vim.fs.normalize(vim.fs.dirname(path)))
-      --   end)
     end
   end,
 })
