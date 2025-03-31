@@ -153,6 +153,7 @@ return {
               updateImportsOnFileMove = { enabled = 'always' },
               preferences = {
                 importModuleSpecifier = 'relative',
+                preferTypeOnlyAutoImports = true,
               },
               suggest = {
                 completeFunctionCalls = true,
