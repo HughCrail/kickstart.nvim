@@ -25,6 +25,7 @@ vim.opt.showmode = false
 -- Set spell check to US English
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
+vim.opt.spelloptions = 'noplainbuffer,camel'
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -135,6 +136,18 @@ vim.keymap.set('n', '<leader>bl', '<c-6>', { desc = 'Toggle last buffer' })
 vim.keymap.set('n', '<leader>fo', require('custom.utils').gotoNextOtherFile, { desc = 'Find Other File' })
 
 vim.keymap.set('t', '<C-S-v>', '<C-\\><C-N>"+pA', { desc = 'Paste from clipboard' })
+
+vim.keymap.set('n', '<leader>fy', function()
+  local file = vim.fn.expand '%:p'
+  if file == '' then
+    print 'No file to yank'
+    return
+  end
+  vim.fn.setreg('+', file)
+  print('Yanked: ' .. file)
+end, { desc = 'Yank current file path' })
+
+vim.g.sqlite_clib_path = 'C:/Users/hcrail/bin/sqlite3.dll'
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`

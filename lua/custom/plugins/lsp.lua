@@ -153,6 +153,7 @@ return {
               updateImportsOnFileMove = { enabled = 'always' },
               preferences = {
                 importModuleSpecifier = 'relative',
+                importModuleSpecifierEnding = 'index',
                 preferTypeOnlyAutoImports = true,
               },
               suggest = {
@@ -170,7 +171,7 @@ return {
           },
         },
         eslint = {
-          workingDirectory = { mode = 'auto' },
+          workingDirectories = { { mode = 'auto' } },
           format = false,
           on_attach = function(_, bufnr)
             vim.keymap.set('n', '<leader>mf', '<cmd>EslintFixAll<cr>', { desc = 'ESLint Fix All', buffer = bufnr })

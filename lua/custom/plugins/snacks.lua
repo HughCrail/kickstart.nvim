@@ -144,7 +144,14 @@ return {
     {
       '<leader>go',
       function()
-        Snacks.gitbrowse()
+        Snacks.gitbrowse {
+          what = 'permalink',
+          open = function(url)
+            vim.fn.setreg('*', url)
+            vim.fn.setreg('0', url)
+            vim.ui.open(url)
+          end,
+        }
       end,
       mode = { 'n', 'v' },
       desc = 'Git Browse',
