@@ -221,6 +221,19 @@ local font = 'FiraCode Nerd Font'
 local defaut_size = 15
 vim.o.guifont = font .. ':h' .. defaut_size
 
+-- jj ui config
+
+vim.keymap.set('n', '<leader>jj', function()
+  Snacks.terminal('jjui', {
+    win = {
+      style = 'lazygit',
+    },
+    env = {
+      JJ_EDITOR = 'nvr --remote-tab-wait',
+    },
+  })
+end, { desc = 'Open jjui' })
+
 if vim.g.neovide then
   vim.g.neovide_fullscreen = true
   vim.g.neovide_cursor_animation_length = 0
