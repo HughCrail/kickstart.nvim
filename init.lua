@@ -147,7 +147,10 @@ vim.keymap.set('n', '<leader>fy', function()
   print('Yanked: ' .. file)
 end, { desc = 'Yank current file path' })
 
-vim.g.sqlite_clib_path = 'C:/Users/hcrail/bin/sqlite3.dll'
+-- only do this on windows
+if vim.fn.has 'win32' == 1 then
+  vim.g.sqlite_clib_path = 'C:/Users/hcrail/bin/sqlite3.dll'
+end
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
