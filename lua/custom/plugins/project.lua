@@ -63,6 +63,7 @@ return {
               keys = {
                 ['<c-x>'] = { 'delete_project', mode = { 'n', 'i' } },
                 ['<c-g>'] = { 'open_neogit', mode = { 'n', 'i' } },
+                ['<c-l>'] = { 'open_jjui', mode = { 'n', 'i' } },
                 ['<c-f>'] = { { 'tcd', 'picker_files' }, mode = { 'n', 'i' } },
                 ['<c-s>'] = { { 'tcd', 'picker_grep' }, mode = { 'n', 'i' } },
               },
@@ -85,6 +86,7 @@ return {
                 require('neogit').open { cwd = dir, kind = 'replace' }
               end
             end,
+            open_jjui = require('custom.utils').openJJFromPicker,
           },
         }
       end,

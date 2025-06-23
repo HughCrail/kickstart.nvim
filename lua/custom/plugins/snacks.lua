@@ -118,6 +118,10 @@ return {
                   'open_neogit',
                   mode = { 'n', 'i' },
                 },
+                ['<c-l>'] = {
+                  'open_jjui',
+                  mode = { 'n', 'i' },
+                },
               },
             },
           },
@@ -129,6 +133,7 @@ return {
                 require('neogit').open { cwd = dir, kind = 'replace' }
               end
             end,
+            open_jjui = require('custom.utils').openJJFromPicker,
           },
         }
       end,

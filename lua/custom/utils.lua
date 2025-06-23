@@ -70,4 +70,24 @@ function M.gotoNextOtherFile()
   vim.cmd('edit ' .. vim.fn.escape(file_dir .. '/' .. next_file, '%#'))
 end
 
+function M.openJJUI()
+  return Snacks.terminal('jjui', {
+    cwd = vim.fn.getcwd(),
+    win = {
+      style = 'lazygit',
+    },
+    env = {
+      JJ_EDITOR = 'nvr --remote-tab-wait',
+    },
+  })
+end
+
+function M.openJJFromPicker(picker, item)
+  if item then
+    picker:close()
+    local dir = Snacks.picker.util.dir(item)
+    vim.api.nvim_set_current_dir(dir)
+  end
+end
+
 return M

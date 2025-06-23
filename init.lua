@@ -227,14 +227,7 @@ vim.o.guifont = font .. ':h' .. defaut_size
 -- jj ui config
 
 vim.keymap.set('n', '<leader>jj', function()
-  Snacks.terminal('jjui', {
-    win = {
-      style = 'lazygit',
-    },
-    env = {
-      JJ_EDITOR = 'nvr --remote-tab-wait',
-    },
-  })
+  require('custom.utils').openJJUI()
 end, { desc = 'Open jjui' })
 
 if vim.g.neovide then
