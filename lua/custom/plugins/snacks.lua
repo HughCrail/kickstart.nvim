@@ -281,8 +281,12 @@ return {
     {
       '<c-/>',
       function()
+        local bufFileDir = vim.fn.expand '%:p:h'
+        if vim.bo.filetype == 'oil' then
+          bufFileDir = require('oil').get_current_dir() or bufFileDir
+        end
         Snacks.terminal(nil, {
-          cwd = require('snacks.git').get_root() or vim.fn.expand '%:p:h',
+          cwd = require('snacks.git').get_root(bufFileDir) or bufFileDir,
         })
       end,
       desc = 'Toggle Terminal',
