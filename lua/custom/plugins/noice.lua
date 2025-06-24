@@ -10,6 +10,15 @@ return {
       },
     },
   },
+  keys = {
+    {
+      '<leader>C',
+      function()
+        require('noice').cmd 'dismiss'
+      end,
+      desc = 'Clear notifications',
+    },
+  },
   opts = {
     lsp = {
       -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
