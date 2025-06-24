@@ -87,6 +87,7 @@ function M.openJJFromPicker(picker, item)
     picker:close()
     local dir = Snacks.picker.util.dir(item)
     vim.api.nvim_set_current_dir(dir)
+    M.openJJUI()
   end
 end
 
