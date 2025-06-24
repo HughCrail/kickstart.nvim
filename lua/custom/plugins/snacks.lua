@@ -282,7 +282,7 @@ return {
       '<c-/>',
       function()
         Snacks.terminal(nil, {
-          cwd = require('snacks.git').get_root(),
+          cwd = require('snacks.git').get_root() or vim.fn.expand '%:p:h',
         })
       end,
       desc = 'Toggle Terminal',
