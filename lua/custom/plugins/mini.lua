@@ -8,6 +8,9 @@ return { -- Collection of various small independent plugins/modules
       replace = {
         prefix = 'go',
       },
+      exchange = {
+        prefix = 'gX',
+      },
     }
     require('mini.move').setup()
     -- vim.keymap.set('n', '<leader>ww', MiniMisc.zoom, { desc = 'Zoom Window' }) BUG: This is broken
