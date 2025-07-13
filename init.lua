@@ -147,6 +147,16 @@ vim.keymap.set('n', '<leader>fy', function()
   print('Yanked: ' .. file)
 end, { desc = 'Yank current file path' })
 
+vim.keymap.set('n', '<leader>nw', function()
+  local filename = vim.fn.system { 'nn', 'journal' }
+  filename = vim.fn.trim(filename)
+  vim.cmd('edit ' .. filename)
+end, {
+  noremap = true,
+  silent = true,
+  desc = 'Open current journal file',
+})
+
 -- only do this on windows
 if vim.fn.has 'win32' == 1 then
   vim.g.sqlite_clib_path = 'C:/Users/hcrail/bin/sqlite3.dll'
@@ -231,7 +241,7 @@ vim.keymap.set('n', '<leader>jj', function()
 end, { desc = 'Open jjui' })
 
 if vim.g.neovide then
-  vim.g.neovide_fullscreen = true
+  -- vim.g.neovide_fullscreen = true
   vim.g.neovide_cursor_animation_length = 0
   vim.g.neovide_scroll_animation_length = 0
   vim.g.neovide_position_animation_length = 0
