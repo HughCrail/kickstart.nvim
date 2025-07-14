@@ -71,6 +71,9 @@ function M.gotoNextOtherFile()
 end
 
 function M.openJJUI()
+  vim.defer_fn(function()
+    vim.cmd 'startinsert!'
+  end, 100)
   return Snacks.terminal('jjui', {
     cwd = vim.fn.getcwd(),
     win = {
@@ -79,6 +82,7 @@ function M.openJJUI()
     env = {
       JJ_EDITOR = 'nvr --remote-tab-wait',
     },
+    auto_close = true,
   })
 end
 
