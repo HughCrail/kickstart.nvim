@@ -213,6 +213,13 @@ return {
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      require('lspconfig').nushell.setup {
+        cmd = { 'nu', '--lsp' },
+        filetypes = { 'nu' },
+        root_dir = require('snacks.git').get_root,
+        single_file_support = true,
+      }
+
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
