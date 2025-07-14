@@ -67,20 +67,24 @@ local function smart_indent(cb, fb)
   end
   fb()
 end
-vim.keymap.set({ 'n' }, '<tab>', 'za', { desc = 'Toggle fold', silent = true, buffer = true })
-vim.keymap.set({ 'n' }, '>>', function()
+local function indent()
   smart_indent(function(ln)
     return '#' .. ln
   end, function()
     vim.cmd '>l'
   end)
-end, { desc = 'Smart indent', silent = true, buffer = true })
-vim.keymap.set({ 'n' }, '<<', function()
+end
+local function dedent()
   smart_indent(function(ln)
     local s = string.gsub(ln, '#', '', 1)
     return s
   end, function()
     vim.cmd '<l'
   end)
-end, { desc = 'Smart dedent', silent = true, buffer = true })
+end
+vim.keymap.set({ 'n' }, '<tab>', 'za', { desc = 'Toggle fold', silent = true, buffer = true })
+vim.keymap.set({ 'n' }, '>>', indent, { desc = 'Smart indent', silent = true, buffer = true })
+vim.keymap.set({ 'n' }, '<<', dedent, { desc = 'Smart dedent', silent = true, buffer = true })
+vim.keymap.set({ 'i' }, '<tab>', indent, { desc = 'Smart indent', silent = true, buffer = true })
+vim.keymap.set({ 'i' }, '<s-tab>', dedent, { desc = 'Smart dedent', silent = true, buffer = true })
 vim.keymap.set({ 'n', 'i' }, '<c-cr>', insert_siblling, { desc = 'insert deeper heading', silent = true, buffer = true })
