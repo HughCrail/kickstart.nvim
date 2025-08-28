@@ -30,6 +30,7 @@ return { -- Autoformat
       typescriptreact = { 'prettier' },
       markdown = { 'prettier' },
       rust = { 'rustfmt' },
+      go = { 'gofmt' },
     },
   },
 }
