@@ -114,10 +114,6 @@ return {
           win = {
             input = {
               keys = {
-                ['<c-g>'] = {
-                  'open_neogit',
-                  mode = { 'n', 'i' },
-                },
                 ['<c-l>'] = {
                   'open_jjui',
                   mode = { 'n', 'i' },
@@ -126,13 +122,6 @@ return {
             },
           },
           actions = {
-            open_neogit = function(_, item)
-              if item then
-                local dir = Snacks.picker.util.dir(item)
-                vim.api.nvim_set_current_dir(dir)
-                require('neogit').open { cwd = dir, kind = 'replace' }
-              end
-            end,
             open_jjui = require('custom.utils').openJJFromPicker,
           },
         }

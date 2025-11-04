@@ -62,7 +62,6 @@ return {
             input = {
               keys = {
                 ['<c-x>'] = { 'delete_project', mode = { 'n', 'i' } },
-                ['<c-g>'] = { 'open_neogit', mode = { 'n', 'i' } },
                 ['<c-l>'] = { 'open_jjui', mode = { 'n', 'i' } },
                 ['<c-f>'] = { { 'tcd', 'picker_files' }, mode = { 'n', 'i' } },
                 ['<c-s>'] = { { 'tcd', 'picker_grep' }, mode = { 'n', 'i' } },
@@ -77,13 +76,6 @@ return {
                   local history = require 'project_nvim.utils.history'
                   history.delete_project(item)
                 end
-              end
-            end,
-            open_neogit = function(_, item)
-              if item then
-                local dir = Snacks.picker.util.dir(item.file)
-                vim.api.nvim_set_current_dir(dir)
-                require('neogit').open { cwd = dir, kind = 'replace' }
               end
             end,
             open_jjui = require('custom.utils').openJJFromPicker,
