@@ -7,6 +7,7 @@
   "browse.nvim": { "branch": "main", "commit": "31c19629212b66801a467cdf8127d8639e5ebb7e" },
   "conform.nvim": { "branch": "master", "commit": "26c02e1155a4980900bdccabca4516f4c712aae9" },
   "copilot.vim": { "branch": "release", "commit": "da369d90cfd6c396b1d0ec259836a1c7222fb2ea" },
+  "difftastic.nvim": { "branch": "main", "commit": "7aa994c6b6a7bf7c841fe17ea40cb8b484635544" },
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
   "fidget.nvim": { "branch": "main", "commit": "e32b672d8fd343f9d6a76944fedb8c61d7d8111a" },
   "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
