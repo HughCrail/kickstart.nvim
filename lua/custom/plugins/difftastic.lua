@@ -8,7 +8,7 @@ return {
     {
       '<leader>jd',
       function()
-        require('difftastic-nvim').open '@'
+        require('difftastic-nvim').open 'latest(ancestors(@) & ~empty())'
       end,
       desc = 'Open diff of current jj revision',
     },
